@@ -16,12 +16,19 @@ public class LoanManagementService : ILoanManagementService
         
         foreach (var loan in loans)
         {
+            // check if loan is overdue
+            if (!loan.IsOverdueMoreThan(0)) continue;
+            
+            // add alert
+            loan.AddAlert();
+                
             // Check if the loan is overdue by more than 3 days
             if (loan.IsOverdueMoreThan(3))
             {
-                // Add alert for overdue loan
-                loan.AddAlert();
+                // Ban User for 5 days
+                loan.User.ApplySanction(5);
             }
+
         }
     }
 }
