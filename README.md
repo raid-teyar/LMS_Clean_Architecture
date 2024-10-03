@@ -21,22 +21,6 @@ This project implements a Library Management System for a university, following 
 - Aggregates are the only type that can raise events, thats the reason why some types such as *LibraryMaterial* are **Aggregates** and not **Entities**.
 - The `CheckOverdueLoans` method in the `LoanManagementService` needs to be called by a job schedule such as **Quartz.NET**, which will fire the method each day to trigger: checking for overdues, alerts and sanctions.
 
-## Core Concepts
-
-### Entities:
-- **User**: Represents a student, professor, or staff member with a unique library card.
-- **Book**: Represents library items such as books, CDs, and theses, identified by an ISBN.
-- **Loan**: Represents a borrowing transaction between a user and an item.
-- **Alert**: Represents overdue notifications for late returns.
-- **Sanction**: Represents penalties applied to users for violating loan rules.
-
-### Use Cases:
-- **BorrowBookUseCase**: Manages the logic for borrowing a book, ensuring limits and rules are enforced.
-- **ReturnBookUseCase**: Handles book returns and evaluates whether an alert or sanction is required.
-- **GenerateAlertUseCase**: Automatically generates overdue alerts when an item exceeds the borrowing period.
-- **ApplySanctionUseCase**: Applies sanctions to users with overdue items for more than 3 days.
-
-
 ## Business Rules
 
 1. A user can borrow up to 5 items at a time.
