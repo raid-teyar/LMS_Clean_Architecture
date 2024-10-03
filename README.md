@@ -5,7 +5,7 @@
 This project implements a Library Management System for a university, following the principles of Clean Architecture and Domain-Driven Design (DDD). The system allows users to borrow library items such as books, CDs, dictionaries, and theses. It enforces rules such as borrowing limits, loan periods, overdue alerts, and sanctions for late returns.
 
 ## Modelization Notes
-- I intentionly didnt create seperate classes from **User** types (Stuedent, Professor, Staff) and i setteled for just using an *enum*, because even though these user types can have specific attributes they are not needed for the scope of this **Library Management System**
+- I intentionly didnt create seperate classes from **User** types (Student, Professor, Staff) and i setteled for just using an *enum*, because even though these user types can have specific attributes they are not needed for the scope of this **Library Management System**
 - In the database schema, all *value objects* have been inlined inside their owning entities, because you can't have them in seperate tables as they don't have an identity.
 - Aggregates are the only type that can raise events, thats the reason why some types such as *LibraryMaterial* are **Aggregates** and not **Entities**.
 - The `CheckOverdueLoans` method in the `LoanManagementService` needs to be called by a job schedule such as **Quartz.NET**, which will fire the method each day to trigger: checking for overdues, alerts and sanctions.
@@ -20,7 +20,7 @@ This project implements a Library Management System for a university, following 
 ### Additional Rules
 1. **Limit on Sanctions**: Users cannot have more than one active sanction at a time.
 2. **Renewal Option**: Users may renew an item once, extending the borrowing period by another 15 days, provided no other users have requested the item.
-*Note: The additional business rules can are labeled as TODOs in the codebase, to make them easier to find*
+- *Note: The additional business rules can are labeled as TODOs in the codebase, to make them easier to find*
 
 ## Design Decisions
 ### 1. Clean Architecture
